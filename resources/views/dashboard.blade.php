@@ -6,7 +6,7 @@
 <body>
     <h2>Welcome to Dashboard</h2>
     @if(session('success'))
-        <div style="color: green;">{{ session('success') }}</div>
+        <div>{{ session('success') }}</div>
     @endif
 
     <p>You are successfully logged in!</p>

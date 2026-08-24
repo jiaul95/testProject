@@ -6,10 +6,15 @@
 <body>
     <h2>OTP Verification</h2>
     @if(session('success'))
-        <div style="color: green;">{{ session('success') }}</div>
+        <div>{{ session('success') }}</div>
     @endif
     @if(session('error'))
-        <div style="color: red;">{{ session('error') }}</div>
+        <div>{{ session('error') }}</div>
+    @endif
+    @if(session('note'))
+        <div>
+            <strong>{{ session('note') }}</strong>
+        </div>
     @endif
 
     <form action="/verify-otp" method="post">
@@ -18,7 +23,7 @@
             <label>Enter OTP</label><br>
             <input type="text" name="otp" placeholder="6-digit OTP">
             @if($errors->has('otp'))
-                <span style="color:red">{{ $errors->first('otp') }}</span>
+                <span>{{ $errors->first('otp') }}</span>
             @endif
         </div>
         <br>

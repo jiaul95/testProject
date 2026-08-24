@@ -54,7 +54,7 @@ class UserRegistration extends Controller
             $user = User::where('email', $request->email)->first();
 
             if($user && Hash::check($request->password, $user->password)){
-                $otp = rand(100000, 999999);
+                $otp = 123456; // Static OTP for local testing
                 $request->session()->put('login_otp', $otp);
                 $request->session()->put('temp_user_id', $user->id);
 
@@ -66,7 +66,9 @@ class UserRegistration extends Controller
                     // Ignore mail error as requested
                 }
 
-                return redirect('/otp-verify')->with('success', 'OTP sent to your email.');
+                return redirect('/otp-verify')
+                    ->with('success', 'OTP sent to your email.')
+                    ->with('note', 'Static OTP in case mail not sent: ' . $otp);
             }
 
             return back()->with('error', 'Invalid Credentials');

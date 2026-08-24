@@ -3,9 +3,7 @@
 use App\Http\Controllers\UserRegistration;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserRegistration::class, 'registerForm']);
 
 Route::get('register-form', [UserRegistration::class, 'registerForm']);
 Route::post('register', [UserRegistration::class, 'store'])->name('store');
